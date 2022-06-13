@@ -1,4 +1,20 @@
-sonarcloud:
+
+
+on: [push]
+
+env:
+    TAG: SanityCheck.${{ github.event.pusher.name }}.${{ github.event.repository.pushed.at}}
+    
+jobs: 
+    build:
+        name: BUILD
+        run-on: ubuntu-latest
+        sonarcloud: ubuntu-latest
+        steps: 
+        - uses: actions/checkout@v2
+        - name: checkout source and build
+          run: echo Hello, world!
+    sonarcloud:
     needs: build
     name: SonarCloud
     runs-on: ubuntu-latest
